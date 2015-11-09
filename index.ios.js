@@ -9,7 +9,6 @@ var {
   View
 } = React;
 
-
 var {
   Router, 
   Route, 
@@ -22,22 +21,22 @@ var {
 var {
   NavBar, 
   NavBarModal
-} = require('./components/NavBar');
+} = require('./src/components/NavBar');
 
-var Launch = require('./components/Launch');
-var Register = require('./components/Register');
-var Login = require('./components/Login');
-var Error = require('./components/Error');
-var Home = require('./components/Home');
-var TabView = require('./components/TabView');
-var TabIcon = require('./components/TabIcon');
-var TabBarFlux = require('./components/TabBarFlux');
+var Launch = require('./src/components/Launch');
+var Register = require('./src/components/Register');
+var Login = require('./src/components/Login');
+var Error = require('./src/components/Error');
+var Home = require('./src/components/Home');
+var TabView = require('./src/components/TabView');
+var TabIcon = require('./src/components/TabIcon');
+var TabBarFlux = require('./src/components/TabBarFlux');
 
 class Example extends React.Component {
     render() {
         return (
-            <View style={{flex:1}}>
-                <View style={{position:'absolute',left:0,right:0,top:0,bottom:0,backgroundColor:'#F5FCFF'}}/>
+            <View style={styles.container}>
+                <View style={styles.main} />
                 <Router>
                     <Schema name="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal}/>
                     <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar}/>
@@ -50,7 +49,7 @@ class Example extends React.Component {
                     <Route name="login" component={Login} schema="modal"/>
                     <Route name="register2" component={Register} schema="withoutAnimation"/>
                     <Route name="error" component={Error} schema="popup"/>
-                    <Route name="tabbar" hideNavBar={true} >
+                    <Route name="tabbar" hideNavBar={false} >
                         <Container component={TabBarFlux}>
                             <Route name="tab1" component={TabView} title="Tab #1" icon={TabIcon} schema="tab"/>
                             <Route name="tab2" component={TabView} title="Tab #2" icon={TabIcon} schema="tab"/>
@@ -65,5 +64,20 @@ class Example extends React.Component {
         );
     }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  main: {
+    position:'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: '#F5FCFF'
+  }
+
+});
 
 AppRegistry.registerComponent('stopwatch', () => Example);
